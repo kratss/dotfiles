@@ -1,0 +1,13 @@
+echo '{ "version": 1 }'\r[
+
+# Begin the endless array.
+
+# We send an empty first array of blocks to make the loop simpler:
+echo '[]'
+
+# Now send blocks with information forever:
+while :;
+do
+  echo ",[{\"name\":\"id_time\",\"full_text\":\"$(date)\"}]"
+  sleep 1
+done

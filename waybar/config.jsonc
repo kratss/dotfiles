@@ -1,0 +1,290 @@
+[
+{
+    "name": "main",
+    "id": "bar-0",
+    "ipc": true,
+    "passthrough": "false",
+
+    "modules-left": [
+	    "sway/workspaces",
+	    "sway/mode",
+        "sway/scratchpad"
+        ],
+    "modules-center": [
+	    "clock"
+        ],
+    "modules-right": [
+	    "tray", 
+        "group/bt",
+        "group/internet",
+	    "group/mullvad",
+        "inhibitor",
+	    "sway/language",
+        "group/wireplumber",
+        "group/upower",
+        "privacy"
+        ],
+    
+    "battery": {
+        "format": "{icon}{capacity}",
+        "format-icons": ["", "", " ", "", ""],
+        "format-time": "{H}sss{MM}"
+        },
+    "bluetooth#drawer-bt": {
+	    "format": "{}",
+        "format-connected": "{device_alias}",
+        "format-connected-battery": "{device_alias}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}"
+        },   
+    "bluetooth#main": {
+	    "format": "",
+        "format-connected": "⚬",
+	    "on-click": "bluetooth toggle",
+        "on-click-right": "bluetoothctl connect 14:3F:A6:DB:36:CA",
+        "tooltip": false
+        },
+    "custom/mullvad": {
+        "exec": "mullvad status | head -n 1",
+        "interval": 10,
+        "tooltip": false
+        },
+    "custom/panelactivate": {
+	    "format": " 🢐 ",
+	    "on-click-right": "swaymsg bar mode hide bar-0",
+	    "on-click": "~/.config/waybar/modules/panel-toggle.fish"
+        },
+    "clock": {
+	    "format": "{:%a, %d %b  %H:%M}",
+	    "interval": 30,	
+	    "on-click": "~/.config/waybar/modules/panel-toggle.fish",
+        "on-click-right": "swaymsg bar mode hide bar-0",
+	    "tooltip": false,
+	    "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
+        },
+    "inhibitor": {
+	    "format": "",
+        "tooltip": false,
+	    "what": "idle"
+	    },
+    "group/bt": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 250,
+            "transition-left-to-right": false
+            },
+        "modules": [
+            "bluetooth#main",
+            "bluetooth#drawer-bt"
+            ]
+        },
+    "group/internet": {
+        "drawer": {
+            "transition-duration": 250,
+            "transition-left-to-right": false
+             },
+        "modules": [
+            "network",
+            "network#drawer-internet"
+            ],
+        "orientation": "inherit"
+        },
+    "group/mullvad": {
+        "drawer": {
+            "transition-duration": 250,
+            "transition-left-to-right": false,
+            "children-class": "hidden"
+            },
+        "modules": [
+            "network#mullvad",
+            "custom/mullvad"
+            ],
+        "orientation": "inherit"
+       },
+    "group/upower": {
+        "drawer": {
+            "transition-duration": 250,
+            "transition-left-to-right": false,
+            "children-class": "hidden"
+            },
+        "modules": [
+            "upower",
+            "upower#drawer-upower"
+            ],
+        "orientation": "inherit"
+       },    "group/wireplumber": {
+         "drawer": {
+            "transition-duration": 250,
+            "transition-left-to-right": false
+            },
+        "modules": [
+            "wireplumber",
+            "wireplumber#drawer"
+            ],
+        "orientation": "inherit"
+        },
+    "network": {
+        "format": "{}",
+        "format-wifi": "", 
+        "format-ethernet": "{ifname}",
+        "format-disconnected": "",
+        "format-disconnected": "",
+        "interface": "wlp54s0",
+        "interval": 3600, //polling seemingly does nothing
+        "tooltip": false
+        },
+    "network#drawer-internet": {
+        "format": "{ifname}",
+        "format-wifi": "{essid}", 
+        "format-ethernet": "{ifname}",
+        "format-disconnected": "{}",
+        "interface": "wlp54s0",
+        "interval": 120,
+        "tooltip-format": "{}",
+        "tooltip-format-wifi": "{essid}\rSignal Strength: {signalStrength}%",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected"
+        },
+    "network#mullvad": {
+        "interface": "wg0-mullvad",
+	    "format": "🔓VPN OFF",
+	    "format-disconnected": "🔓VPN OFF",
+	    "format-ethernet": "",
+	    "min-length": 1,
+	    "on-click": "mullvad connect",
+        "tooltip": false
+    },
+    "privacy": {
+        "icon-spacing": 4,
+        "icon-size": 18,
+        "transition-durtion": 250,
+        "modules": [
+            {
+           "type": "screenshare",
+           "tooltip": true,
+           "tooltip-icon-size": 24
+           },
+           {
+           "type": "audio-in",
+           "tooltip": true,
+           "tooltip-icon-size": 24
+           }
+        ]
+    },
+    "sway/workspaces": {
+        "disable-scroll-wraparound": true,
+        "format": "{icon}",
+        "format-icons": {
+            "default": "○",
+            "focused": "●"
+            },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": []
+            },
+        "window-rewrite": {}
+        },
+    "sway/language": {
+    	"format": "{short}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+        "tooltip": false
+        },
+    "sway/mode": {
+    },
+    "sway/scratchpad": {
+        "format": "SP: {count}",
+        "show-empty": false,
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "tray": {
+        "spacing": 9,
+        "show-passive-items": true
+        },
+    "upower": {
+        "format": "",
+        "format-alt": "{percentage} {time}",
+        "hide-if-empty": false,
+        "icon-size": 17,
+ 	    "native-path": "BAT0",
+        "tooltip": false,
+        "tooltip-padding": 20,
+        "tooltip-spacing": 10
+        },
+    "upower#drawer-upower": {
+        "format": "  {percentage} {time}",
+        "format-alt": "{percentage} {time}",
+        "hide-if-empty": false,
+ 	    "native-path": "BAT0",
+        "show-icon": false,
+        "tooltip": false
+        },
+    "wireplumber": {
+        "format": " {volume}%",
+        "format-muted": "",
+        "max-volume": 100,
+        "on-click": "helvum",
+        "tooltip": false
+        },
+    "wireplumber#drawer": {
+        "format": "{node_name}",
+        "tooltip": false
+        }
+},
+
+
+{
+    "name": "panel",
+    "exclusive": false,
+    "id": "bar-1",
+    "ipc": true,
+    "layer": "top",
+    "margin-top": 10,
+    "margin-left": 250,
+    "margin-right": 250,
+    "margin-bottom":60,
+    "passthrough": false,
+    "position": "top",
+    "reload_style_on_change": true,
+
+    "modules-right": [
+ 	    "bluetooth#panel",
+        "custom/upower",
+        "wireplumber#panel",
+        "custom/notifications"
+        ],
+
+    "bluetooth#panel": {
+        "format": " <b>Bluetooth</b>",
+    	"format-connected": "<b>Bluetooth</b>\rDevices: {num_connections}\r",
+	    "justify": "left",
+        "on-click": "bluetooth toggle"
+        },
+    "custom/notifications": {
+        "escape": true,
+        "exec": "~/.config/waybar/modules/notification-center.fish",
+        "format": "{}asdf",
+        "on-click": "~/.config/waybar/modules/notification-center.fish",
+        "return-type": "json",
+        "signal": 3
+        },
+    "custom/upower": {
+	    "escape": false,
+        "exec": "~/.config/waybar/modules/battery-levels.sh",
+	    "format": "<b>Battery</b>\n{}",
+	    "interval": 10,
+        "return-type": "json",
+	    "tooltip": false 
+	    },
+    "wireplumber#panel": {
+        "format": "<b>Audio</b>\r{node_name}   {volume}%",
+        "format-muted": "{node_name}{volume}%",
+        "on-click": "helvum"
+        }
+
+}
+]
+
+

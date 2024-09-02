@@ -1,0 +1,28 @@
+#!/bin/bash
+count=0
+for i in $(upower -e); do
+	temp=$(upower -i $i | grep model)
+	if [ "${#temp}" -eq 0 ]; then
+		continue
+	else
+		bat+=("$(upower -i $i | grep model) $(upower -i $i | grep percentage)")
+		bat[$count]=${bat[$count]/"model: "/}
+		bat[$count]=${bat[$count]/"percentage:"/}
+	
+		bat[$count]=$(echo ${bat[$count]})
+		bat[$count]=$(echo ${bat[$count]} | head -c 10)
+		bat[$count]=${bat[$count]}$'\\n'
+		bob+=${bat[$count]}
+		echo ${bat[0]}
+		count=$(($count+1))
+	fi
+done
+#echo  ${bat[1]}\n\r${bat[2]}
+
+for i in ${bat}
+do
+	bat+=${bat}
+	echo $bat
+done
+#echo {\"text\": \"${bat[0]}\\n${bat[1]}\\n${bat[2]}\\n${bat[3]}\\n${bat[4]}\\nasdf\", \"tooltip\": \"dfsg\", \"class\": \"asf\", \"percentage\": \"2\"}
+

@@ -1,0 +1,43 @@
+[
+{
+    "name": "panel",
+    "id": "bar-0",
+    "ipc": false,
+    "layer": "top",
+    "passthrough": false,
+    "position": "right",
+    "exclusive": false,
+    "margin-top": 10,
+    "margin-left": -50,
+    "margin-right": 10,
+    "margin-bottom": 900,
+    "reload_style_on_change": true,
+    "modules-center": [
+	"bluetooth"
+    ],
+    "modules-right": [
+ 	"custom/upower"
+   ],
+
+    "bluetooth": {
+    	"format": " <b>Bluetooth</b>\r{device_alias}",
+	"on-click": "bluetooth toggle"
+    },
+    "clock#localtime": {
+	"format": "{:%d %b    %H:%M}",
+	"interval": 1,
+	"tooltip": true,
+	"tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+	"on-click": "notify-send -t 1000 Example 'Body Text'"
+    },
+    "custom/upower": {
+	"interval": 1,
+	"exec": "~/.config/waybar/modules/battery-levels.sh",
+	"tooltip": true,
+	"format": "<b>Battery:</b>\n{}",
+	"return-type": "json",
+	"escape": false
+	}
+}
+]
+

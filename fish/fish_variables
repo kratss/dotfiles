@@ -50,6 +50,7 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d2d3f76
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
+SETUVAR --export fish_prompt_pwd_dir_length:3
 SETUVAR fish_user_paths:/home/m/\x2elocal/bin
 SETUVAR notifications:a\x1eb\x1edog
 SETUVAR temp:todo\x2emd\x3a\x20text/plain

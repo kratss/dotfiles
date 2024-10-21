@@ -1,0 +1,9 @@
+#! /bin/bash
+swaymsg workspace 1
+swaymsg workspace_layout tabbed
+swaymsg exec firefox \
+  --new-window https://matrix.endor.cyou &
+swaymsg exec korganizer
+swaymsg exec flatpak run org.mozilla.Thunderbird &
+swaymsg exec tuxedo-control-center &
+swaymsg exec gnome-pomodoro &

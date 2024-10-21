@@ -146,7 +146,7 @@
         "tooltip-format-disconnected": "Disconnected"
         },
     "network#mullvad": {
-        "interface": "wg0-mullvad",
+        "interface": "tun0",
 	    "format": "🔓VPN OFF",
 	    "format-disconnected": "🔓VPN OFF",
 	    "format-ethernet": "",

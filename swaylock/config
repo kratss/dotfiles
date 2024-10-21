@@ -1,1 +1,7 @@
-exec swayidle -w timeout 300 'swaylock -C$HOME/.config/swaylock/config.idle' timeout 420 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock'
+# The defaults below could be overridden in $XDG_CONFIG_HOME/swaylock/config
+#  (~/.config/swaylock/config).
+#
+# Image path supports environment variables and shell expansions,
+# e.g. image=$HOME/Pictures/default.png
+image=~/.local/share/backgrounds/lockscreen
+scaling=fill

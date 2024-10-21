@@ -5,6 +5,7 @@
 include appearance
 include color
 include hawk-sway
+#include sway-startup
 include /etc/sway/config.d/*
 ### Input configuration {{{
 input * {
@@ -303,11 +304,11 @@ exec gnome-keyring-daemon --start --components=secrets
 # Polkit allows auth pop-ups in Nautilus etc
 exec /usr/libexec/polkit-gnome-authentication-agent-1 
 
-# Launch apps at login
-exec ~/.config/sway/sway-startup.sh 
-
 # Keyboard remapper
 exec input-remapper-control --command autoload
+
+# Nightmode gamma adjustment
+exec wlsunset -l 50.6 -L 8.40
 # }}}
 
 

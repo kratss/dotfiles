@@ -116,14 +116,16 @@ c.colors.hints.fg = 'rgb(229,196,158)'
 c.colors.statusbar.command.fg = 'white'
 c.hints.border = '0xp'
 
-# Open a new window for every tab.
 c.tabs.tabs_are_windows = True
+c.tabs.show = 'never'
+
 c.url.default_page = 'about:blank'
+c.url.start_pages = 'about:blank'
 
 # Format to use for the window title. The same placeholders like for
 # `tabs.title.format` are defined.
 # Type: FormatString
-c.window.title_format = 'qb{title_sep}{perc}{current_title}'
+c.window.title_format = 'qb{audio}{private}{title_sep}{perc} {host}'
 
 c.content.fullscreen.window = True 
 ##

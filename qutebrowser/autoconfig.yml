@@ -6,7 +6,7 @@
 
 config_version: 2
 settings:
-  url.searchengines:
-    global:
-      DEFAULT: https://kagi.com/search?token=JgBA5ySRjgU.urS8GtqPfI8vEoInXoTAPs8dTRrlnGAThg2zWpAcaGY&q={}
-      d: https://duckduckgo.com/?q={}
+  tabs.title.format:
+    global: '{audio}{index}: {current_title}'
+  tabs.title.format_pinned:
+    global: '{index}'

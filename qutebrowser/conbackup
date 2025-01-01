@@ -1,0 +1,5 @@
+import colors
+
+config.load_autoconfig()
+config.bind('fw', 'hint all window')
+colors.hints.match.fg(green)

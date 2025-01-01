@@ -1,12 +1,13 @@
 #! /bin/bash
-swaymsg layout tabbed
-exec firefox \
- --new-window https://matrix.endor.cyou \
- --new-window https://mytuxedo.de/index.php/apps/tasks/ &
-exec gnome-pomodoro &    
-exec flatpak run org.mozilla.Thunderbird &   
-exec tuxedo-control-center &
-exec gnome-control-center & 
-exec gnome-calendar &
-
-
+swaymsg workspace 1
+swaymsg workspace_layout tabbed
+swaymsg exec "mullvad-exclude firefox --profile \
+  /home/m/.mozilla/firefox/pb8kmivp.SwayWM \
+  --new-window https://matrix.endor.cyou" &
+swaymsg exec foot nvim todo.md
+swaymsg exec korganizer
+swaymsg exec flatpak run org.mozilla.Thunderbird &
+swaymsg exec tuxedo-control-center &
+swaymsg exec gnome-pomodoro &
+sleep 20
+sway_arranger.sh

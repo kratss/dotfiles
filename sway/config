@@ -235,8 +235,7 @@ exec swayidle -w \
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 # }}}
-# Resizing containers: {{{
-#
+# Resize mode: {{{
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -259,12 +258,177 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 # }}}
+# Manipulation mode {{{
+mode "manipulate" {
+# Basics: {{{
+#
+    # Start a terminal
+    bindsym t exec $term
+
+    # Kill focused window
+    bindsym bracketleft kill
+
+    # Start your launcher
+    bindsym semicolon mode "launch"
+
+    # Switch keyboard layout
+    bindsym Shift+f input * xkb_layout next
+
+    # Start hawk file search 
+    bindsym Shift+d $file_finder
+   
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    #floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+# }}}
+# Volume and Brightness: {{{
+#
+    # Control volume
+    bindsym XF86AudioLowerVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
+    bindsym XF86AudioRaiseVolume exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"
+    bindsym XF86AudioMute exec "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%"
+    # bindsym XF86AudioLowerVolume exec "amixer -D pipewire sset Master 500-"
+    # bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -3%"
+    
+    # Increase brightness logarithmically
+    bindsym --locked XF86MonBrightnessUp exec light -A 1
+    bindsym --locked XF86MonBrightnessDown exec light -U 1
+
+    # Control media playback
+    bindsym XF86AudioPlay  exec playerctl play-pause
+    bindsym XF86AudioPause exec playerctl play-pause
+    bindsym XF86AudioNext  exec playerctl next
+    bindsym XF86AudioPrev  exec playerctl previous
+    bindsym XF86AudioForward exec playerctl position 5+ 
+    bindsym XF86AudioRewind  exec playerctl position 5-
+# }}}
+# Navigation Keys {{{
+    # Move your focus around
+    bindsym $left focus left
+    bindsym $down focus down
+    bindsym $up focus up
+    bindsym $right focus right
+
+    bindsym Tab focus right
+    bindsym Shift+Tab focus left
+
+    # Or use [up|down|left|right]
+    bindsym Left focus left
+    bindsym Down focus down
+    bindsym Up focus up
+    bindsym Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym Shift+$left move left
+    bindsym Shift+$down move down
+    bindsym Shift+$up move up
+    bindsym Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym Shift+Left move left
+    bindsym Shift+Down move down
+    bindsym Shift+Up move up
+    bindsym Shift+Right move right
+#   }}}
+# Workspaces: {{{
+#
+    # Switch to workspace
+    bindsym 1 workspace number 1
+    bindsym 2 workspace number 2
+    bindsym 3 workspace number 3
+    bindsym 4 workspace number 4
+    bindsym 5 workspace number 5
+    bindsym 6 workspace number 6
+    bindsym 7 workspace number 7
+    bindsym 8 workspace number 8
+    bindsym 9 workspace number 9
+    bindsym 0 workspace number 10
+
+    bindsym XF86Explorer workspace number 1
+    bindsym XF86HomePage workspace number 2
+    bindsym XF86Mail workspace number 3
+    bindsym XF86Calculator workspace number 4
+
+    # Move focused container to workspace
+    bindsym Shift+1 move container to workspace number 1
+    bindsym Shift+2 move container to workspace number 2
+    bindsym Shift+3 move container to workspace number 3
+    bindsym Shift+4 move container to workspace number 4
+    bindsym Shift+5 move container to workspace number 5
+    bindsym Shift+6 move container to workspace number 6
+    bindsym Shift+7 move container to workspace number 7
+    bindsym Shift+8 move container to workspace number 8
+    bindsym Shift+9 move container to workspace number 9
+    bindsym Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+# }}}
+# Layout: {{{
+#
+    # You can "split" the current object of your focus with
+    # b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym b splith
+    bindsym v splitv
+
+    # Switch the current container between different layout styles
+    bindsym s layout stacking
+    bindsym w layout tabbed
+    bindsym e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym a focus parent
+
+# }}}
+# Scratchpad: {{{
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym minus scratchpad show
+# }}}
 # Application Launchers {{{
     # Open a Firefox window
-    bindsym $mod+n exec firefox
+    bindsym n exec firefox
     #firefox --remote "openURL (new-window)"
     #firefox --browser
-    bindsym $mod+p exec firefox --private-window
+    bindsym p exec firefox --private-window
+# }}}
+bindsym Escape mode "default"
+bindsym Super_L mode "default"
+
+}
+bindsym Super_L mode "manipulate"
+# }}}
+# Launch mode {{{
+mode "launch" {
+    bindsym semicolon exec $menu
+    bindsym Super_L mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "manipulate"
+  }
 # }}}
 # }}}
 ### Status Bar: {{{

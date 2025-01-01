@@ -5,4 +5,4 @@
 local map = LazyVim.safe_keymap_set
 map("n", "<leader>p", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("i", "jk", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
-map("n", "l;", ":")
+map("n", "mm", ":")

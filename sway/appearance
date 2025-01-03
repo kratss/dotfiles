@@ -9,4 +9,4 @@ smart_borders off
 #output * bg  #222222 solid_color
 #output * bg ~/.local/share/backgrounds/01.jpg fill
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /usr/share/backgrounds/f40/default/f40-01-day.png fill
+output * bg ~/.config/sway/wallpaper

@@ -85,7 +85,6 @@ config.set('content.local_content_can_access_file_urls', False, 'file:///home/m/
 # Type: List of String
 c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_name']
 ##
-
 ### Preferences
 c.url.searchengines = {"k":"https://kagi.com/search?token=JgBA5ySRjgU.urS8GtqPfI8vEoInXoTAPs8dTRrlnGAThg2zWpAcaGY&q={}","d": "https://duckduckgo.com/?q={}","DEFAULT": "https://lite.duckduckgo.com/lite/?q={}"}
 
@@ -108,28 +107,22 @@ c.new_instance_open_target = 'private-window'
 # Type: Int
 c.auto_save.interval = 15000
 ##
-
-### Appearance and Behavior
+### Appearance
 # Background color for hints. Note that you can use a `rgba(...)` value
+c.fonts.default_size = "15pt"
 c.colors.hints.bg = 'rgba(6,25,35,.8)'
 c.colors.hints.fg = 'rgb(229,196,158)'
 c.colors.statusbar.command.fg = 'white'
+c.colors.webpage.darkmode.enabled = True
+c.content.fullscreen.window = True 
 c.hints.border = '0xp'
-
 c.tabs.tabs_are_windows = True
 c.tabs.show = 'never'
-
 c.url.default_page = 'about:blank'
 c.url.start_pages = 'about:blank'
-
-# Format to use for the window title. The same placeholders like for
-# `tabs.title.format` are defined.
-# Type: FormatString
 c.window.title_format = 'qb{audio}{private}{title_sep}{perc} {host}'
-
-c.content.fullscreen.window = True 
+c.zoom.default = "140%" 
 ##
-
 ### Keybindings
 # Bindings for normal mode
 config.unbind('f', mode='normal')
@@ -146,5 +139,5 @@ config.bind('dd', 'tab-close')
 # Type: Dict
 c.aliases = {'q': 'close', 'qa': 'quit', 'w': 'session-save', 'wq': 'quit --save', 'wqa': 'quit --save'}
 
-## vim:foldmethod=marker:foldmarker=###,##
-
+config.bind('<Alt-Shift-u>', 'spawn --userscript qute-keepassxc --key 3CA7E8841F46A31597F6C01B35046DEB11AB2E81', mode='insert')
+config.bind('pw', 'spawn --userscript qute-keepassxc --key 3CA7E8841F46A31597F6C01B35046DEB11AB2E81', mode='normal')

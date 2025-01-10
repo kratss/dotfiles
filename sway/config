@@ -34,7 +34,7 @@ input * {
 ### Variables  {{{
 # Logo key Mod4. Use Mod1 for Alt. Escape.
 set $mod Mod4 
-set $mod2 Mod1
+set $mod2 Mod4
 
 # Home row direction keys, like vim
 set $left h
@@ -405,6 +405,7 @@ mode "manipulate" {
 bindsym Escape mode "default"
 bindsym Super_L mode "default"
 bindsym i mode "default"
+bindsym r mode "resize"
 }
 bindsym Super_L mode "manipulate"
 # }}}

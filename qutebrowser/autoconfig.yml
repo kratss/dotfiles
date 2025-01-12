@@ -6,7 +6,8 @@
 
 config_version: 2
 settings:
-  content.geolocation:
-    https://bestellen.dominos.nl: false
-    https://misterminit.eu: false
-    https://www.thuisbezorgd.nl: false
+  url.searchengines:
+    global:
+      DEFAULT: https://lite.duckduckgo.com/lite/?q={}
+      d: https://duckduckgo.com/g?q={}
+      k: https://kagi.com/search?token=JgBA5ySRjgU.urS8GtqPfI8vEoInXoTAPs8dTRrlnGAThg2zWpAcaGY&q={}

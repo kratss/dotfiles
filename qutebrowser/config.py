@@ -86,7 +86,7 @@ config.set('content.local_content_can_access_file_urls', False, 'file:///home/m/
 c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_name']
 ##
 ### Preferences
-c.url.searchengines = {"k":"https://kagi.com/search?token=JgBA5ySRjgU.urS8GtqPfI8vEoInXoTAPs8dTRrlnGAThg2zWpAcaGY&q={}","d": "https://duckduckgo.com/?q={}","DEFAULT": "https://lite.duckduckgo.com/lite/?q={}"}
+c.url.searchengines = {"k":"https://kagi.com/search?token=TOKEN={}","d": "https://duckduckgo.com/?q={}","DEFAULT": "https://lite.duckduckgo.com/lite/?q={}","dict":"https://www.dict.cc/?s={}"}
 
 # How to open links in an existing instance if a new one is launched.
 # This happens when e.g. opening a link from a terminal. See

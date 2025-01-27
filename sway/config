@@ -402,8 +402,10 @@ mode "manipulate" {
     bindsym minus scratchpad show
 # }}}
 # Application Launchers {{{
-    bindsym n exec qutebrowser
+    bindsym n exec ~/.local/bin/qutebrowser
+    bindsym shift+n exec qutebrowser
     bindsym p exec qutebrowser --target private-window
+
 # }}}
 bindsym Escape mode "default"
 bindsym Super_L mode "default"

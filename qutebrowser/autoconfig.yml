@@ -6,8 +6,5 @@
 
 config_version: 2
 settings:
-  url.searchengines:
-    global:
-      DEFAULT: https://lite.duckduckgo.com/lite/?q={}
-      d: https://duckduckgo.com/g?q={}
-      k: https://kagi.com/search?token=JgBA5ySRjgU.urS8GtqPfI8vEoInXoTAPs8dTRrlnGAThg2zWpAcaGY&q={}
+  content.media.audio_video_capture:
+    https://element.endor.cyou: true

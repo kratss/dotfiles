@@ -66,7 +66,7 @@ set $menu dmenu_path | fuzzel
 #   output HDMI-A-1 resolution 1920x1080 position 0,1085
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-Output eDP-1 scale 2 
+output eDP-1 scale 1.3 
 output 'Acer Technologies KC242Y A 11220382D3W01' position 1920,0 
 workspace 1 output 'Acer Technologies KC242Y A 11220382D3W01'
 workspace 2 output 'Acer Technologies KC242Y A 11220382D3W01'
@@ -266,8 +266,9 @@ mode "manipulate" {
 
     # Kill focused window
     bindsym bracketleft kill
-    # Start your launcher
-    bindsym d exec $menu 
+
+    # Start your launcher and return to insert mode
+    bindsym d exec $menu; mode "default"
 
     # Switch keyboard layout
     bindsym Shift+f input * xkb_layout next
@@ -292,7 +293,7 @@ mode "manipulate" {
     
     # Increase brightness logarithmically
     bindsym --locked XF86MonBrightnessUp exec light -A 1
-    bindsym --locked XF86MonBrightnessDown exec light -U 1
+    bindsym  XF86MonBrightnessDown exec light -U 1
 
     # Control media playback
     bindsym XF86AudioPlay  exec playerctl play-pause
@@ -402,7 +403,7 @@ mode "manipulate" {
 # }}}
 # Application Launchers {{{
     bindsym n exec qutebrowser
-    bindsym p exec qutebrowser --target --private-window
+    bindsym p exec qutebrowser --target private-window
 # }}}
 bindsym Escape mode "default"
 bindsym Super_L mode "default"
@@ -458,7 +459,10 @@ exec /usr/libexec/polkit-gnome-authentication-agent-1
 exec ~/.config/sway/sway-startup.sh 
 
 # Keyboard remapper
-exec input-remapper-control --command autoload
+# exec input-remapper-control --command autoload
+
+# Screen yellowing / night light mode
+exec wlsunset -l 50.6 -L 8.40  -t 3000 -T 7000
 # }}}
 
 

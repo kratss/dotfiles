@@ -88,40 +88,27 @@ c.url.yank_ignored_parameters = ['ref', 'utm_source', 'utm_medium', 'utm_campaig
 ### Preferences
 c.url.searchengines = {"k":"https://kagi.com/search?token=TOKEN={}","d": "https://duckduckgo.com/?q={}","DEFAULT": "https://lite.duckduckgo.com/lite/?q={}","dict":"https://www.dict.cc/?s={}"}
 
-# How to open links in an existing instance if a new one is launched.
-# This happens when e.g. opening a link from a terminal. See
-# `new_instance_open_target_window` to customize in which window the
-# link is opened in.
-# Type: String
-# Valid values:
-#   - tab: Open a new tab in the existing window and activate the window.
-#   - tab-bg: Open a new background tab in the existing window and activate the window.
-#   - tab-silent: Open a new tab in the existing window without activating the window.
-#   - tab-bg-silent: Open a new background tab in the existing window without activating the window.
-#   - window: Open in a new window.
-#   - private-window: Open in a new private window.
-c.new_instance_open_target = 'private-window'
-
 # Time interval (in milliseconds) between auto-saves of
 # config/cookies/etc.
 # Type: Int
 c.auto_save.interval = 15000
 ##
-### Appearance
+### Appearance 
 # Background color for hints. Note that you can use a `rgba(...)` value
 c.fonts.default_size = "15pt"
 c.colors.hints.bg = 'rgba(6,25,35,.8)'
 c.colors.hints.fg = 'rgb(229,196,158)'
 c.colors.statusbar.command.fg = 'white'
-c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = False 
 c.content.fullscreen.window = True 
+c.downloads.remove_finished = 360000;
 c.hints.border = '0xp'
 c.tabs.tabs_are_windows = True
 c.tabs.show = 'never'
 c.url.default_page = 'about:blank'
 c.url.start_pages = 'about:blank'
 c.window.title_format = 'qb{audio}{private}{title_sep}{perc} {host}'
-c.zoom.default = "140%" 
+c.zoom.default = "100%" 
 ##
 ### Keybindings
 # Bindings for normal mode

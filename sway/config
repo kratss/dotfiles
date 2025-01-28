@@ -6,6 +6,7 @@ include appearance
 include color
 include hawk-sway
 include /etc/sway/config.d/*
+
 ### Input configuration {{{
 input * {
     xkb_layout "us,de"
@@ -45,6 +46,9 @@ set $right l
 # Your preferred terminal emulator
 set $term footclient 
 exec foot --server #allows fast launching of footclient over regular foot
+
+# Preferred file manager
+set $file_manager thunar
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can 
@@ -260,7 +264,6 @@ bindsym $mod+r mode "resize"
 # Manipulation mode {{{
 mode "manipulate" {
 # Basics: {{{
-#
     # Start a terminal
     bindsym t exec $term
 
@@ -402,7 +405,7 @@ mode "manipulate" {
     bindsym minus scratchpad show
 # }}}
 # Application Launchers {{{
-    bindsym n exec ~/.local/bin/qutebrowser
+    bindsym n exec qutebrowser-fast
     bindsym shift+n exec qutebrowser
     bindsym p exec qutebrowser --target private-window
 
@@ -411,15 +414,25 @@ bindsym Escape mode "default"
 bindsym Super_L mode "default"
 bindsym i mode "default"
 bindsym r mode "resize"
+bindsym o mode "launch"
 }
 bindsym Super_L mode "manipulate"
 # }}}
 # Launch mode {{{
 mode "launch" {
-    bindsym semicolon exec $menu
-    bindsym Super_L mode "default"
-    bindsym Escape mode "default"
-    bindsym Return mode "manipulate"
+  bindsym d exec $menu; mode "default"
+  bindsym f exec $file_manager; mode "default"
+  bindsym k exec keepassxc; mode "default"
+  bindsym m exec mullvad-browser; mode "default"
+  bindsym n exec qutebrowser-fast; mode "default"
+  bindsym shift+n exec qutebrowser; mode "default"
+  bindsym p exec qutebrowser --target private-window; mode "manipulate"
+  bindsym t exec $term; mode "default"
+ 
+  bindsym Super_L mode "default"
+  bindsym Escape mode "default"
+  bindsym Return mode "manipulate"
+  bindsym i mode "default"
   }
 # }}}
 # }}}
@@ -465,6 +478,12 @@ exec ~/.config/sway/sway-startup.sh
 
 # Screen yellowing / night light mode
 exec wlsunset -l 50.6 -L 8.40  -t 3000 -T 7000
+
+# Set environment variable so sway can see it 
+exec --no-startup-id sh -c 'export PATH=$PATH:~/.local/bin'
+
+exec env PATH=$PATH:~/.local/bin/
+
 # }}}
 
 

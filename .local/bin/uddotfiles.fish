@@ -3,7 +3,7 @@
 # Copy my dotfiles to a folder with a git repo, then push to origin
 set dotfolder ~/Projects/dotfiles4
 cd $dotfolder
-rm -rf $dotfolder/.local $dotfoler/.config
+rm -rf $dotfolder/.local $dotfolder/.config
 mkdir -p .local .local/bin .config
 cp -rf ~/.local/bin/* ./.local/bin/
 cp -rf \
@@ -21,8 +21,6 @@ cp -rf \
     ~/.config/tridactyl/ \
     ~/.config/waybar/ \
     ./.config/
-echo -----------------
-echo $PWD
 git add .*
 git commit -m "Update dotfiles (Commit generated automatically)"
 git push -u origin master

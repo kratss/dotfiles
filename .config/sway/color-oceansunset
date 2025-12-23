@@ -1,0 +1,15 @@
+# Color configuration for sway
+# vim:fileencoding=utf-8:ft=conf:foldmethod=marker
+#                        border bckgrd text   indctr child_bdr		
+client.focused           4d443d addcc9 000000 ff0000 18FFFFff 
+client.focused_tab_title 4d443d dbebc2 000000                 
+client.focused_inactive  4d443d addcc9 000000 b2dfdb B388FFff 
+client.unfocused         4d443d bbbbcb 000000 80cbc4 9999b9ff
+#client.urgent
+
+#client.focused             focused window
+#client.focused_tab_title   focused container
+#client.focused_inactive    last focused container/window
+#client.unfocused           all other windows
+#client.urgent              urgent windows
+

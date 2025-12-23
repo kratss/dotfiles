@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor endor-blog folder for changes
+
+[Path]
+PathModified=/home/m/Documents/endor-blog/
+Unit=endor-blog.service
+
+[Install]
+WantedBy=default.target

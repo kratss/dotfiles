@@ -1,0 +1,10 @@
+#!/bin/bash
+# clears clipboard after 45 seconds
+grep -f -x "/bin/bash $0" | grep -v ^$$\$ | while read pid ; do 
+    kill $pid
+done
+
+sleep 45  # <- the delay
+wl-copy -c
+echo cleared clipboard
+notify-send "Clipboard cleared" -t 500

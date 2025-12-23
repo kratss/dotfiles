@@ -1,0 +1,19 @@
+#!/bin/bash
+count=0
+for i in $(upower -e); do
+	temp=$(upower -i $i | grep model)
+	if [ "${#temp}" -eq 0 ]; then
+		continue
+	else
+		bat=("$(upower -i $i | grep model | head -c 35)\
+			$(upower -i $i | grep percentage)")
+		bat=${bat/"model:"/}
+		bat=${bat/"percentage:"/}
+		bat=$(echo -e $bat)
+		out+=${bat}
+		out+=$'\\n'
+		count=$(($count+1))
+	fi
+done
+echo "{\"text\": \"${out}\", \"tooltip\": \"dfsg\", \"class\": \"AAAA\", \"percentage\": \"2\"}"
+#echo $bob

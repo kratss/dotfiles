@@ -1,0 +1,29 @@
+unbind f
+unbind dd
+unbind d
+unbind D
+unbind fr
+unbind cr
+
+bind a hint
+bindurl element.endor.cyou a hint -c  div.mx_AccessibleButton, [class="mx_BasicMessageComposer"]
+bind ff hint
+bind frb composite hint -pipe a href | jsb -p tri.excmds.open("about:reader?url=" + JS_ARG)
+bind fra composite hint -pipe a href | reader
+bind fw hint -w
+bind fp hint -wp
+bind fy hint -y
+
+# c prefix for acting on current page
+bind cra  composite yank -pipe a href |  jsb -p tri.excmds.open(about:reader?url=" + JS_ARG)
+bind crb reader
+
+set searchurls.ddglite https://lite.duckduckgo.com/lite/?q=
+set searchurls.l ddglite 
+set searchurls.ddghtml https://html.duckduckgo.com/html/?q=
+set searchurls.h ddghtml
+
+quickmark e https://matrix.endor.cyou 
+
+container create hejvann
+autocontain -u askubuntu\.com hejvann

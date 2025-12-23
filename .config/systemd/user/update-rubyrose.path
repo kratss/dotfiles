@@ -1,0 +1,10 @@
+[Unit]
+Description=Monitor rubyrose folder for changes
+
+[Path]
+PathModified=/home/m/Documents/rubyrose/rcxeblog
+PathModified=/home/m/Documents/rubyrose/
+Unit=update-rubyrose.service
+
+[Install]
+WantedBy=default.target

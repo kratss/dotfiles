@@ -1,0 +1,41 @@
+#!/usr/bin/env fish
+function parse_config
+    if test -n "$XDG_CONFIG_HOME"
+        set conf_dir $XDG_CONFIG_HOME
+    else if test -d ~/.config/hawk
+        set conf_dir ~/.config
+    end
+
+    set section
+    for line in (cat $conf_dir/restic/config.ini)
+        string trim -q $line
+        if echo $line | grep -q "^#"; or test -z $line
+            continue
+        else if test $line = "[backup directories]"
+            set section backup_directories
+        else if test $line = "[environment variables]"
+            set section env_vars
+        else if test $line = "[options]"
+            set section options
+        else if test $section = backup_directories
+            set line (eval echo $line) #eval expands shell vars in config file
+            set -a -g args "$line"
+        else if test $section = env_vars
+            set line (eval echo $line)
+            set -a -g env "$line"
+        else if test $section = options
+            set line (eval echo $line)
+            set -a -g args "--$line"
+        end
+    end
+end
+# Fish struggles to return arrays
+# Initialize global variables inside parse_config instead
+argparse h/help -- $argv
+if test -n "$_flag_help"
+    echo "Update restic archive"
+    echo "This wrapper parses a config file and passes the arguments to restic. The wrapper looks in XDG_CONFIG_HOME/restic/config.ini and ~/.config/restic/config.ini by default"
+end
+parse_config
+source $env
+restic backup $args

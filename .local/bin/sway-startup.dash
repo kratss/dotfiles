@@ -1,0 +1,9 @@
+#! /bin/dash
+swaymsg workspace 1
+swaymsg layout tabbed
+swaymsg exec flatpak run org.gnome.Calendar &
+#swaymsg exec qutebrowser https://matrix.endor.cyou &
+swaymsg exec mullvad-exclude flatpak run im.riot.Riot &
+swaymsg exec flatpak run net.thunderbird.Thunderbird &
+swaymsg exec keepassxc &
+swaymsg exec tuxedo-control-center &

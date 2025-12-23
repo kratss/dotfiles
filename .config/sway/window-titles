@@ -1,0 +1,6 @@
+font pango:DejaVu Sans, FontAwesome 8
+
+for_window [app_id="element"] title_format "🗨️ %title"
+for_window [app_id="foot"] title_format "🧰  %title"
+for_window [app_id="qutebrowser"] title_format "🦜  %title"
+for_window [app_id="firefox"] title_format "🦊 %title"

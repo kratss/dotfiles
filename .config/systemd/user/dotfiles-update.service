@@ -1,0 +1,11 @@
+[Unit]
+Description=Update dotfiles repo when dotfiles edited
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=dotfiles-update
+
+[Install]
+WantedBy=default.target
+

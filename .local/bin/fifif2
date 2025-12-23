@@ -1,0 +1,102 @@
+#!/usr/bin/env fish 
+# FIsh FIle handler
+
+function get_special
+    # Special categories like audiobook, which have the same extensions
+    # as music files, but are handled differently
+
+    # If it is an audio file in a folder containing the word audiobook,
+    # use audiobook handler
+    if string match -iq '*audiobook*' $file
+        and string match -q 'audio/*' "$type"
+        handle_audiobook
+    else if string match -iq 'http*' $file
+        handle_web
+    end
+end
+function get_mime
+    switch $type
+        case application/pdf
+            handle_pdf
+        case application/vnd.oasis.opendocument.text
+            handle_opendoctext
+        case 'image/*'
+            handle_image
+        case 'audio/*'
+            handle_audio
+        case text/calendar
+            handle_calendar
+        case 'text/*'
+            handle_text
+        case 'video/*'
+            handle_video
+            exit
+    end
+end
+function get_ext
+    set ext (path extension "$file")
+    switch $ext
+        case ""
+            return
+        case .pdf
+            handle_pdf
+        case .m4b
+            handle_audiobook
+        case .html
+            handle_web
+        case .ics
+            handle_calendar
+        case .epub
+            handle_ebook
+    end
+end
+function handle_audio
+    $DEFAULT_TERM mpv $file 2>/dev/null &
+    exit
+end
+function handle_audiobook
+    $DEFAULT_TERM mpv --save-position-on-quit $file 2>/dev/null &
+    exit
+end
+function handle_ebook
+    # --command is required. not sure why
+    flatpak run --command=foliate com.github.johnfactotum.Foliate $file
+    exit
+end
+function handle_image
+    flatpak run org.gnome.Loupe $file &
+    exit
+end
+function handle_calendar
+    flatpak run org.gnome.Calendar $file &
+    exit
+end
+function handle_opendoctext
+    libreoffice $file &
+    exit
+end
+function handle_pdf
+    flatpak run org.gnome.Evince $file 2>/dev/null &
+    echo "handle pdf"
+    exit
+end
+function handle_text
+    $DEFAULT_TERM $EDITOR $file 2>/dev/null &
+    exit
+end
+function handle_web
+    qutebrowser-fast $file 2>/dev/null &
+    exit
+end
+function handle_video
+    mpv $file 2>/dev/null &
+end
+argparse -- $argv
+or return
+set file $argv
+set type (file --mime-type -b $file)
+get_special
+get_ext
+get_mime
+/usr/bin/xdg-open $file
+exit

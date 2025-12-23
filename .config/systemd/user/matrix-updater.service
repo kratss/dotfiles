@@ -1,0 +1,10 @@
+[Unit]
+Description=Updates the matrix server at endor.cyou
+Requires=network.targets
+
+[Service]
+Type=simple
+ExecStart=%h/Projects/matrix-docker-ansible-deploy/update-script.fish
+
+[Install]
+WantedBy=default.target

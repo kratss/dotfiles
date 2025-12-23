@@ -1,0 +1,76 @@
+#!/usr/bin/env fish 
+# FIsh FIle handler
+
+function get_special
+    # Special categories like audiobook, which have the same extensions
+    # as music files, but are handled differently
+
+    # If it is an audio file in a folder containing the word audiobook,
+    # use audiobook handler
+    if string match -iq '*audiobook*' $file
+        and string match -q 'audio/*' "$type"
+        eval $audiobook
+    else if string match -iq 'http*' $file
+        eval $web
+    end
+end
+
+function get_mime
+    switch $type
+        case application/pdf
+            eval $pdf
+        case application/vnd.oasis.opendocument.text
+            eval $odt
+        case 'image/*'
+            eval $img
+        case 'audio/*'
+            echo MIME
+            eval $audio
+        case text/calendar
+            eval $calendar
+        case 'text/*'
+            eval $txt
+        case 'video/*'
+            eval $video
+            exit
+    end
+end
+
+function get_ext
+    set ext (path extension "$file")
+    switch $ext
+        case ""
+            return
+        case .pdf
+            eval $pdf
+        case .m4b
+            eval $audiobook
+        case .html
+            eval $web
+        case .ics
+            eval $calendar
+        case .epub
+            eval $ebook
+    end
+end
+
+argparse -- $argv
+or return
+set file $argv
+echo $file
+set audio "$DEFAULT_TERM mpv '$file' & exit"
+set audiobook "$DEFAULT_TERM mpv --save-position-on-quit '$file' 2>/dev/null & exit"
+set calendar "flatpak run org.gnome.Calendar '$file' & exit"
+set ebook "flatpak run --command=foliate com.github.johnfactotum.Foliate '$file' & exit"
+set img "flatpak run org.gnome.Loupe '$file' & exit"
+set odt "libreoffice $file & exit"
+set pdf "flatpak run org.gnome.Evince '$file' & exit"
+set txt "$DEFAULT_TERM $EDITOR '$file' 2>/dev/null & exit"
+set video "mpv '$file' 2>/dev/null & exit"
+set web "qutebrowser-fast '$file' --target private-window 2>/dev/null & exit"
+set type (file --mime-type -b $file)
+get_special
+get_ext
+get_mime
+/usr/bin/xdg-open $file
+exit

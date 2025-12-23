@@ -1,0 +1,8 @@
+[package]
+name = "panic_handler"
+version = "0.1.0"
+edition = "2015"
+authors = ["Fernando Virdia <fernando@fundamental.domains>"]
+
+[lib]
+proc-macro = true

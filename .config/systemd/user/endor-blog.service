@@ -1,0 +1,5 @@
+[Unit]
+Description=Sync remote endor blog folder to local folder
+
+[Service]
+ExecStart=/home/m/.local/bin/update-endor-blog.fish

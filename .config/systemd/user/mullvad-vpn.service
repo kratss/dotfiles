@@ -1,0 +1,11 @@
+[Unit]
+Description=Launches Mullvad VPN utility
+Documentation=man:mullvad
+StartLimitIntervalSec=60
+StartLimitBurst=4
+
+[Service]
+ExecStart=mullvad connect
+
+[Install]
+WantedBy=default.target

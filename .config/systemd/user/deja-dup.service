@@ -1,0 +1,8 @@
+[Unit]
+Description=Monitor for DejaDup Backup
+
+[Service]
+ExecStart=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/libexec/deja-dup/deja-dup-monitor org.gnome.DejaDup
+
+[Install]
+WantedBy=default.target

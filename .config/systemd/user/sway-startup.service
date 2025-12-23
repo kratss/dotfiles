@@ -1,0 +1,11 @@
+[Unit]
+Description=Opens applications and places them in the desired workspace
+Wants=network.target
+After=xdg-desktop-autostart.target
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/sway-startup.sh
+
+[Install]
+WantedBy=xdg-desktop-autostart.target
+ 

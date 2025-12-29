@@ -3,7 +3,7 @@
 # Copy my dotfiles to a folder with a git repo, then push to origin
 set dotfolder ~/Projects/dotfiles4
 cd $dotfolder
-rm -rf $dotfolder/.local $dotfolder/.config
+rm -rf ./.local ./.config
 mkdir -p .local .local/bin .config
 cp -rf ~/.local/bin/* ./.local/bin/
 cp -rf \

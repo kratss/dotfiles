@@ -13,14 +13,10 @@
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
 
-import json
 import os
 
-with open(os.path.expanduser("~/.private/qute.json"), "r") as f:
-    private_vars = json.load(f)
-    kagi = private_vars["kagi"]
-    keepassxc1 = private_vars["keepassxc1"]
-    keepassxc2 = private_vars["keepassxc2"]
+with open(os.path.expanduser("~/.private/kagi"), "r") as f:
+    kagi = f.read().strip()
 
 ### Performance
 c.qt.chromium.low_end_device_mode = "auto"
@@ -150,12 +146,12 @@ c.aliases = {
 
 config.bind(
     "<Alt-Shift-u>",
-    "spawn --userscript qute-keepassxc --key keepassxc1",
+    "spawn --userscript qute-keepassxc --key 3CA7E8841F46A31597F6C01B35046DEB11AB2E81",
     mode="insert",
 )
 config.bind(
     "pw",
-    "spawn --userscript qute-keepassxc --key keepassxc2",
+    "spawn --userscript qute-keepassxc --key 28AEDCD98A2C86697B8AD79A797CE9C1A316E76D",
     mode="normal",
 )
 ##

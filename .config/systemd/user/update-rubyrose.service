@@ -1,5 +1,0 @@
-[Unit]
-Description=Sync local files to rubyrose server
-
-[Service]
-ExecStart=/home/m/.local/bin/update-rubyrose.fish

@@ -21,8 +21,8 @@
       "inhibitor",
 	    "sway/language",
       "group/wireplumber",
-      "battery",
       "privacy",
+      "upower",
         ],
     
     "battery": {

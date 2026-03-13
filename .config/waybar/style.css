@@ -110,16 +110,18 @@ keyboard-state > label.locked {
     background: rgba(0, 0, 0, 0.7);}
 #mode{
   background-color: @mode;}
-#network.mullvad {
+/*
+  #network.mullvad {
     animation-name: blink;
     animation-duration: 1s;
-    animation-timing-function: steps(2);
+    animation-timing-function: steps(1);
     animation-iteration-count: infinite;
     animation-direction: alternate;}
 #network.mullvad.disconnected {
     }
 #network.mullvad.ethernet {
     animation-name: none;}
+*/
 #privacy-item {
     animation-name: blink;
     transition-property: none;

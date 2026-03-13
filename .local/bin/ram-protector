@@ -1,9 +1,9 @@
 #!/usr/bin/env fish 
 while true
-    if test (awk '/MemAvailable/ {print $2}' /proc/meminfo) -lt 1048576
+    if test (free | awk '/^Mem:/ {print $7}') -lt 2500000
         notify-send "Low RAM"
         sleep 10
     else
-        sleep 120
+        sleep 256
     end
 end

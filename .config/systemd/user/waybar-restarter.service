@@ -1,0 +1,10 @@
+[Unit]
+Description=Restarts waybar after crash
+
+[Service]
+ExecStart=waybar 
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=default.target

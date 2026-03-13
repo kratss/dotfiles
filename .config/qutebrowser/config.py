@@ -19,8 +19,7 @@ import os
 with open(os.path.expanduser("~/.private/qute.json"), "r") as f:
     private_vars = json.load(f)
     kagi = private_vars["kagi"]
-    keepassxc1 = private_vars["keepassxc1"]
-    keepassxc2 = private_vars["keepassxc2"]
+    keepassxc1 = private_vars["keepassxc"]
 
 ### Performance
 c.qt.chromium.low_end_device_mode = "auto"
@@ -55,7 +54,7 @@ config.set("content.images", True, "devtools://*")
 config.set("content.javascript.enabled", True, "chrome-devtools://*")
 config.set("content.javascript.enabled", True, "devtools://*")
 config.set("content.javascript.enabled", True, "chrome://*/*")
-config.set("content.javascript.enabled", False, "kagi.com")
+config.set("content.javascript.enabled", True, "kagi.com")
 config.set("content.javascript.enabled", True, "kagi.com/assistant")
 
 # Allow locally loaded documents to access remote URLs.
@@ -102,10 +101,12 @@ c.url.searchengines = {
 # config/cookies/etc.
 c.auto_save.interval = 15000
 
-
 config.set("content.notifications.enabled", True, "https://matrix.endor.cyou")
 config.set("content.notifications.enabled", True, "https://element.endor.cyou")
 config.set("content.notifications.enabled", True, "https://grok.com")
+config.set("content.notifications.enabled", True, "https://*.proton.me")
+config.set("content.notifications.enabled", True, "https://discord.com")
+config.set("content.register_protocol_handler", False, "*.proton.me")
 ##
 ### Appearance
 # Background color for hints. Note that you can use a `rgba(...)` value
@@ -119,6 +120,7 @@ c.downloads.remove_finished = 5000
 c.hints.border = "0xp"
 c.tabs.tabs_are_windows = True
 c.tabs.show = "never"
+c.tabs.position = "left"
 c.url.default_page = "about:blank"
 c.url.start_pages = "about:blank"
 c.window.title_format = "{audio}{private}{perc} {current_title}"
@@ -127,16 +129,17 @@ c.zoom.default = "100%"
 ### Keybindings
 # Bindings for normal mode
 config.unbind("f", mode="normal")
-config.bind("a", "hint")
-config.bind("ff", "hint")
-config.bind("fw", "hint all window")
-config.bind("fp", "hint links run open -p {hint-url}")
-config.bind("fy", "hint all yank")
+config.bind("f", "hint")
+config.bind("dw", "hint all window")
+config.bind("dp", "hint links run open -p {hint-url}")
+config.bind("dy", "hint all yank")
 config.unbind("d", mode="normal")
+config.unbind("<Ctrl+q>")
 # config.bind("dd", "tab-close")
 config.bind(",r", "spawn --userscript readability")
 config.bind("ck", "scroll-page 0 -1")
 config.bind("cj", "scroll-page 0 1")
+config.bind("u", "undo --window")
 # Aliases for commands. The keys of the given dictionary are the
 # aliases, while the values are the commands they map to.
 # Type: Dict
@@ -148,15 +151,19 @@ c.aliases = {
     "wqa": "quit --save",
 }
 
+# Password manager integration
 config.bind(
     "<Alt-Shift-u>",
-    "spawn --userscript qute-keepassxc --key keepassxc1",
+    "spawn --userscript qute-keepassxc --key keepassxc",
     mode="insert",
 )
 config.bind(
     "pw",
-    "spawn --userscript qute-keepassxc --key keepassxc2",
+    "spawn --userscript qute-keepassxc --key keepassxc",
     mode="normal",
+)
+config.bind(
+    "pt", "spawn --userscript qute-keepassxc --key ABC1234 --totp", mode="normal"
 )
 ##
 ### Other

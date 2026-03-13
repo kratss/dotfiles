@@ -1,0 +1,12 @@
+[Unit]
+Description=Mullvad
+StartLimitIntervalSec=60
+StartLimitBurst=4
+
+[Service]
+ExecStart=/usr/bin/mullvad connect
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

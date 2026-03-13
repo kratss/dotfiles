@@ -1,0 +1,11 @@
+#!/usr/bin/env fish 
+while true
+    set swap_used (free --bytes | awk '/Swap: / {print $3}')
+    set swap_threshold (math "3.5 * 1024 ^ 3")
+    if test $swap_used -gt $swap_threshold
+        notify-send "Excessive swap use detected"
+        sleep 10
+    else
+        sleep 256
+    end
+end
